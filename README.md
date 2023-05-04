@@ -1,6 +1,6 @@
 # 🌍 minecraft-java-server-query
 
-Module to gather basic (MOTD, favicon, player count, version) information from Minecraft Java servers .
+Module to gather basic (MOTD, favicon, player count, version) information from Minecraft Java servers.
 
 # Usage
 
