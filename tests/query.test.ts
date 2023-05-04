@@ -1,7 +1,7 @@
 import { query } from "../src/index";
 
 test("query hypixel", async () => {
-    const keys = Object.keys(await query({ host: "mc.hypixel.net", timeout: 15_000 }));
+    const keys = Object.keys(await query({ host: "mc.hypixel.net" }));
     expect(
         keys.includes("version") &&
         keys.includes("players") &&
@@ -11,7 +11,7 @@ test("query hypixel", async () => {
 }, 15_000);
 
 test("query bedwars practice", async () => {
-    const keys = Object.keys(await query({ host: "bedwarspractice.club", timeout: 15_000 }));
+    const keys = Object.keys(await query({ host: "bedwarspractice.club" }));
     expect(
         keys.includes("version") &&
         keys.includes("players") &&
@@ -21,7 +21,7 @@ test("query bedwars practice", async () => {
 }, 15_000);
 
 test("query hycraft", async () => {
-    const keys = Object.keys(await query({ host: "mc.hycraft.us", timeout: 15_000 }));
+    const keys = Object.keys(await query({ host: "mc.hycraft.us" }));
     expect(
         keys.includes("version") &&
         keys.includes("players") &&
@@ -31,7 +31,7 @@ test("query hycraft", async () => {
 }, 15_000);
 
 test("query universocraft", async () => {
-    const keys = Object.keys(await query({ host: "mc.universocraft.com", timeout: 15_000 }));
+    const keys = Object.keys(await query({ host: "mc.universocraft.com" }));
     expect(
         keys.includes("version") &&
         keys.includes("players") &&
@@ -41,7 +41,7 @@ test("query universocraft", async () => {
 }, 15_000);
 
 test("query pvplegacy", async () => {
-    const keys = Object.keys(await query({ host: "play.pvplegacy.net", timeout: 15_000 }));
+    const keys = Object.keys(await query({ host: "play.pvplegacy.net" }));
     expect(
         keys.includes("version") &&
         keys.includes("players") &&
