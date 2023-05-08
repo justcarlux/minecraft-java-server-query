@@ -1,7 +1,7 @@
 {
     "name": "minecraft-java-server-query",
     "version": "1.0.1",
-    "description": "Module to gather basic information from a Minecraft server directly.",
+    "description": "Module to gather basic information from a Minecraft Java server directly.",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "files": [
