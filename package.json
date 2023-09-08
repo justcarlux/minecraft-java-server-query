@@ -13,7 +13,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/LKxth/minecraft-java-server-query.git"
+        "url": "git+https://github.com/justcarlux/minecraft-java-server-query.git"
     },
     "keywords": [
         "minecraft",
@@ -23,9 +23,9 @@
     "author": "justcarlux",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/LKxth/minecraft-java-server-query/issues"
+        "url": "https://github.com/justcarlux/minecraft-java-server-query/issues"
     },
-    "homepage": "https://github.com/LKxth/minecraft-java-server-query#readme",
+    "homepage": "https://github.com/justcarlux/minecraft-java-server-query#readme",
     "devDependencies": {
         "@types/jest": "^29.5.1",
         "@types/node": "^18.16.3",
