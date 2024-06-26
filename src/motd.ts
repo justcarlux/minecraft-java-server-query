@@ -32,7 +32,7 @@ export function toRaw(motd: any, useAmpersand?: boolean): string {
     if (typeof motd === "string") return motd;
     let text = (motd?.text ?? "") + `${(useAmpersand ? "&" : "§")}r`;
 
-    if (motd.color) {
+    if (motd && motd.color) {
         const code = Object.keys(MotdColorCodes).find(key => {
             return MotdColorCodes[key as keyof typeof MotdColorCodes] === motd.color
         });
@@ -51,6 +51,6 @@ export function toRaw(motd: any, useAmpersand?: boolean): string {
     }
 
     text = `${(useAmpersand ? "&" : "§")}r` + text;
-    return (text) + (motd.extra ? motd.extra.map((e: any) => toRaw(e)).join("") : "");
+    return (text) + (motd && motd.extra ? motd.extra.map((e: any) => toRaw(e)).join("") : "");
 
 }
