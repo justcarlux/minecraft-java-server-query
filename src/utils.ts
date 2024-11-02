@@ -2,12 +2,11 @@ import util from "util";
 const encoder = new util.TextEncoder();
 
 export function varIntBuffer(num: number) {
-
     // Direct source:
     // https://github.com/chrisdickinson/varint/blob/master/encode.js
 
     const msb = 0x80;
-    const msball = ~0x7F;
+    const msball = ~0x7f;
     const int32Length = Math.pow(2, 31);
 
     if (num > Number.MAX_SAFE_INTEGER) throw new RangeError("Number too big");
@@ -28,7 +27,6 @@ export function varIntBuffer(num: number) {
     out[offset] = num | 0;
 
     return Buffer.from(out);
-
 }
 
 export function stringVarIntBuffer(string: string) {
@@ -43,5 +41,5 @@ export function uInt16BEBuffer(number: number) {
 }
 
 export function prefixLength(buffer: Buffer) {
-    return Buffer.concat([ varIntBuffer(buffer.byteLength), buffer ]);
+    return Buffer.concat([varIntBuffer(buffer.byteLength), buffer]);
 }

@@ -5,13 +5,12 @@ import util from "util";
 const decoder = new util.TextDecoder();
 
 interface ModifiedTCPSocketOptions {
-    host: string,
-    port: number,
-    timeout: number
+    host: string;
+    port: number;
+    timeout: number;
 }
 
 export default class ModifiedTCPSocket extends EventEmitter {
-
     public host: string;
     public port: number;
     public timeout: number;
@@ -28,49 +27,46 @@ export default class ModifiedTCPSocket extends EventEmitter {
     }
 
     public init() {
-
         if (this.port < 0 || this.port > 65536 || isNaN(this.port)) {
             this.emit("error", "Port out of range");
             return;
         }
 
-        this.socket = createConnection({ 
+        this.socket = createConnection({
             host: this.host,
             port: this.port,
             timeout: this.timeout
         });
 
-        this.socket.on("data", (chunk) => {
+        this.socket.on("data", chunk => {
             this.data = Buffer.concat([this.data, chunk]);
         });
-    
+
         this.socket.on("close", () => {
             this.end();
             this.emit("error", "Socket closed");
         });
-    
-        this.socket.on("error", (err) => {
+
+        this.socket.on("error", err => {
             this.end();
             this.emit("error", err);
         });
-
     }
 
     public async waitUntilDataIsAvailable(length: number): Promise<void> {
-        return await new Promise((resolve) => {
+        return await new Promise(resolve => {
             if (this.data.byteLength >= length) return resolve();
             const dataListener = () => {
                 if (this.data.byteLength >= length) {
                     this.socket?.removeListener("data", dataListener);
                     resolve();
                 }
-            }
+            };
             this.socket?.on("data", dataListener);
         });
     }
 
     public async readVarInt(readByte: () => Promise<number>) {
-
         // Direct source:
         // https://github.com/PassTheMayo/minecraft-server-util/blob/master/src/util/varint.ts
 
@@ -80,20 +76,17 @@ export default class ModifiedTCPSocket extends EventEmitter {
         let value = 0;
 
         do {
-
             if (reads > 4) throw new Error();
 
             read = await readByte();
-            value = (read & 0b01111111);
-            result |= (value << (7 * reads));
+            value = read & 0b01111111;
+            result |= value << (7 * reads);
             reads++;
 
             if (reads > 5) throw new Error();
-
         } while ((read & 0b10000000) != 0);
 
         return result;
-
     }
 
     public async readUInt8() {
@@ -118,5 +111,4 @@ export default class ModifiedTCPSocket extends EventEmitter {
             this.socket.destroy();
         }
     }
-
 }
